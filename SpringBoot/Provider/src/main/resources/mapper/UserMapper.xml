@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangyuhang.provider.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.zhangyuhang.InterfaceAndEntry.Entry.User">
+        <id column="userid" jdbcType="VARCHAR" property="userid"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="effectsign" jdbcType="VARCHAR" property="effectsign"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="datatime" jdbcType="DATE" property="datatime"/>
+        <result column="userflg" jdbcType="VARCHAR" property="userflg"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    userid, username, name, password, effectsign, tel, datatime, userflg
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from User
+        where userid = #{userid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from User
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.zhangyuhang.InterfaceAndEntry.Entry.User">
+    insert into User (userid, username, name, 
+      password, effectsign, tel, 
+      datatime, userflg)
+    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{effectsign,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{datatime,jdbcType=DATE}, #{userflg,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.zhangyuhang.InterfaceAndEntry.Entry.User">
+        insert into User
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="effectsign != null">
+                effectsign,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="datatime != null">
+                datatime,
+            </if>
+            <if test="userflg != null">
+                userflg,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="effectsign != null">
+                #{effectsign,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="datatime != null">
+                #{datatime,jdbcType=DATE},
+            </if>
+            <if test="userflg != null">
+                #{userflg,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhangyuhang.InterfaceAndEntry.Entry.User">
+        update User
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="effectsign != null">
+                effectsign = #{effectsign,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="datatime != null">
+                datatime = #{datatime,jdbcType=DATE},
+            </if>
+            <if test="userflg != null">
+                userflg = #{userflg,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where userid = #{userid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zhangyuhang.InterfaceAndEntry.Entry.User">
+    update User
+    set username = #{username,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      effectsign = #{effectsign,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      datatime = #{datatime,jdbcType=DATE},
+      userflg = #{userflg,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+
+    <select id="findByUsername" parameterType="com.zhangyuhang.InterfaceAndEntry.Entry.User" resultMap="BaseResultMap">
+    select * from  User where username = #{username,jdbcType=VARCHAR}
+  </select>
+</mapper>
